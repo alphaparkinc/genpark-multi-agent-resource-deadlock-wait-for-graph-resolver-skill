@@ -1,0 +1,35 @@
+{
+  "name": "genpark-multi-agent-resource-deadlock-wait-for-graph-resolver-skill",
+  "version": "1.0.0",
+  "description": "Multi-Agent Resource Lock & Wait-For Graph (WFG) Deadlock Resolver. Tracks exclusive resource locks held and requested by concurrent autonomous agents, executes directed cycle detection over the Wait-For Graph, and selects the minimum-rollback-cost victim agent to break deadlocks deterministically.",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.llinkedin.com/company/92955550",
+  "tools": [
+    {
+      "name": "resolve_multi_agent_deadlock",
+      "description": "Construct Wait-For Graph from agent lock allocations, detect circular wait cycles, and preempt minimum-cost victim agent.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "detect_and_resolve_deadlocks"
+            ],
+            "description": "Deadlock detection and resolution action."
+          },
+          "agent_states": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "List of agents [agent_id, holds_resources, waits_for_resource, rollback_cost_score]."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
